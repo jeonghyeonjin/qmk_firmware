@@ -17,7 +17,7 @@ for more options.
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define TAPPING_FORCE_HOLD
 
-#define SPLIT_TRANSACTION_IDS_KB USER_SYNC_A
+// #define SPLIT_TRANSACTION_IDS_KB USER_SYNC_A
 
 // Auto Shift
 #define NO_AUTO_SHIFT_ALPHA

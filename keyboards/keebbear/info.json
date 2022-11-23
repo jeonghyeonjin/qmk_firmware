@@ -1,0 +1,8 @@
+{
+    "url": "https://keebbear.com",
+    "manufacturer": "KEEBBEAR",
+    "maintainer": "KEEBBEAR",
+    "usb": {
+        "vid": "0xA8F8"
+    }
+}

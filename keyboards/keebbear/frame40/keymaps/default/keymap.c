@@ -1,7 +1,7 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 #include <string.h>
-#include "cookie_mx.h"
+#include "frame40.h"
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ D E F I N I T I O N S                                                                                                                      │
@@ -286,19 +286,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    │ a r r o w / n u m p a d                                   │
    └───────────────────────────────────────────────────────────┘
    ╭─────────┬─────────┬─────────┬─────────┬─────────╮                    ╭─────────┬─────────┬─────────┬─────────┬─────────╮
-   │         │    7    │    8    │    9    │    -    │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │         │  HOME   │    ↑    │   END   │         │
+   │         │    7    │    8    │    9    │    -    │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │         │  HOME   │         │   END   │         │
    ├─────────┼─────────┼─────────┼─────────┼─────────┤ │╰╯╰╯╰╯╰╯╰╯╰╯╰╯╰╯│ ├─────────┼─────────┼─────────┼─────────┼─────────┤
-   │         │    4    │    5    │    6    │    +    ├─╯                ╰─┤         │    ←    │    ↓    │    →    │    '    │
+   │         │    4    │    5    │    6    │    +    ├─╯                ╰─┤         │    ←    │    ↑    │    →    │    '    │
    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────╮╭─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-   │    0    │    1    │    2    │    3    │    =    │         ││    -    │         │  PGUP   │         │  PGDN   │         │
+   │    0    │    1    │    2    │    3    │    =    │         ││    -    │         │  PGUP   │    ↓    │  PGDN   │         │
    ╰─────────┴─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┴─────────╯
                        │    ▼    │    ▼    │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
                        ╰─────────┴─────────┴─────────┴─────────╯╰─────────┴─────────┴─────────┴─────────╯  */
 
    [_ARRPAD] = LAYOUT_cookie(
-    _______,  KC_7,     KC_8,     KC_9,     KC_MINS,                       _______,  KC_HOME,  KC_UP,    KC_END,   _______,
-    _______,  KC_4,     KC_5,     KC_6,     KC_PLUS,                       _______,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_QUOT,
-    KC_0,     KC_1,     KC_2,     KC_3,     KC_EQL,   _______,   KC_MINS,  _______,  KC_PGUP,  _______,  KC_PGDN,  _______,
+    _______,  KC_7,     KC_8,     KC_9,     KC_MINS,                       _______,  KC_HOME,  _______,  KC_END,   _______,
+    _______,  KC_4,     KC_5,     KC_6,     KC_PLUS,                       _______,  KC_LEFT,  KC_UP,    KC_RGHT,  KC_QUOT,
+    KC_0,     KC_1,     KC_2,     KC_3,     KC_EQL,   _______,   KC_MINS,  _______,  KC_PGUP,  KC_DOWN,  KC_PGDN,  _______,
                         _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______
  ),
  /*
@@ -451,6 +451,10 @@ bool oled_task_user(void) {
     // static const char PROGMEM os_w_1[] = {0x20, 0x20, 0x20, 0x9E, 0x9F, 0};
     // static const char PROGMEM os_w_2[] = {0x20, 0x20, 0x20, 0xBE, 0xBF, 0};
 
+    static const char PROGMEM symbol_1[] = {0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x95, 0x96, 0x97, 0x98, 0};
+    static const char PROGMEM symbol_2[] = {0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0xB5, 0xB6, 0xB7, 0xB8, 0};
+    static const char PROGMEM symbol_3[] = {0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0xD5, 0xD6, 0xD7, 0xD8, 0};
+
     static const char PROGMEM logo_1[] = {0x20, 0x20, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94, 0};
     static const char PROGMEM logo_2[] = {0x20, 0x20, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4, 0};
     static const char PROGMEM logo_3[] = {0x20, 0x20, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0};
@@ -500,7 +504,9 @@ bool oled_task_user(void) {
             oled_write_ln_P(PSTR(" win "), true); // ──── WIN
         }
     } else {
-        oled_write_ln("", false);
+        oled_write_ln(symbol_1, false);
+        oled_write_ln(symbol_2, false);
+        oled_write_ln(symbol_3, false);
         oled_write_ln("", false);
         oled_write_ln(logo_1, false);
         oled_write_ln(logo_2, false);

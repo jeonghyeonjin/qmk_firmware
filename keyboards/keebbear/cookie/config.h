@@ -72,7 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_DI_PIN D3
 #define RGBLED_NUM 42
 #define RGBLED_SPLIT { 21, 21 }
-#define RGBLIGHT_ANIMATIONS
+// #define RGBLIGHT_ANIMATIONS
 
 #ifdef HAPTIC_ENABLE
 #    define FB_ERM_LRA 1

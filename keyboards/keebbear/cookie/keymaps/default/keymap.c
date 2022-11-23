@@ -311,9 +311,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        ╰─────────┴─────────┴─────────┴─────────╯╰─────────┴─────────┴─────────┴─────────╯  */
 
    [_ARRPAD] = LAYOUT_cookie(
-    _______,  KC_7,     KC_8,     KC_9,     KC_MINS,                       _______,  KC_HOME,  KC_UP,    KC_END,   _______,
-    _______,  KC_4,     KC_5,     KC_6,     KC_PLUS,                       _______,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_QUOT,
-    KC_0,     KC_1,     KC_2,     KC_3,     KC_EQL,   _______,   KC_MINS,  _______,  KC_PGUP,  _______,  KC_PGDN,  _______,
+    _______,  KC_7,     KC_8,     KC_9,     KC_MINS,                       _______,  KC_HOME,  _______,  KC_END,   _______,
+    _______,  KC_4,     KC_5,     KC_6,     KC_PLUS,                       _______,  KC_LEFT,  KC_UP,    KC_RGHT,  KC_QUOT,
+    KC_0,     KC_1,     KC_2,     KC_3,     KC_EQL,   _______,   KC_MINS,  _______,  KC_PGUP,  KC_DOWN,  KC_PGDN,  _______,
                         _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______
  ),
  /*
@@ -748,37 +748,3 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 #endif // ENCODER_ENABLE
-
-
-void process_key(uint16_t keycode) {
-    // update screen with the new key
-    update(keycode);
-
-    gui_state_t t = get_gui_state();
-
-    update_gui_state();
-}
-
-void user_sync_a_slave_handler(uint8_t in_buflen, const void* in_data, uint8_t out_buflen, void* out_data) {
-    const sync_keycode_t* m2s = (const sync_keycode_t*)in_data;
-    // get the last char typed on left side and update the right side
-    process_key(m2s->keycode);
-}
-
-void keyboard_post_init_user(void) {
-    // callback for tranport sync data
-    transaction_register_rpc(USER_SYNC_A, user_sync_a_slave_handler);
-}
-
-void housekeeping_task_user(void) {
-    // only for master side
-    if (!is_keyboard_master()) return;
-
-    // only if a new char was typed
-    if (!b_sync_need_send) return;
-
-    // send the char to the slave side : sync is done
-    if (transaction_rpc_send(USER_SYNC_A, sizeof(last_keycode), &last_keycode)) {
-        b_sync_need_send = false;
-    }
-}
