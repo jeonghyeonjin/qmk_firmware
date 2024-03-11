@@ -16,7 +16,6 @@
 
 // Configure for the Cirque model used on the BearBlitz.
 #define CIRQUE_PINNACLE_DIAMETER_MM 35
-#define CIRQUE_PINNACLE_CURVED_OVERLAY
 #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE // Circular scroll.
 
 //#define TAPPING_TERM 170

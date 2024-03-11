@@ -52,7 +52,8 @@
             "multisplash": true,
             "solid_splash": true,
             "solid_multisplash": true
-        }
+        },
+        "sleep": true
     },
     "matrix_pins": {
         "cols": ["GP8", "GP7", "GP6", "GP5", "GP4"],
